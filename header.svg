@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 260"
+     preserveAspectRatio="xMidYMid slice"
+     role="img"
+     aria-labelledby="title description">
+  <title id="title">Hi, I'm Elves! Welcome to my GitHub</title>
+  <desc id="description">Animated green waves and particles behind a welcome message.</desc>
+
+  <style>
+    .wave-left {
+      animation: move-left 8s linear infinite;
+    }
+
+    .wave-right {
+      animation: move-right 11s linear infinite;
+    }
+
+    .halo {
+      animation: breathe 4s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .cursor {
+      animation: blink 0.8s steps(1, end) 3.7s infinite;
+      opacity: 0;
+    }
+
+    @keyframes move-left {
+      from { transform: translateX(0); }
+      to { transform: translateX(-1200px); }
+    }
+
+    @keyframes move-right {
+      from { transform: translateX(-1200px); }
+      to { transform: translateX(0); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.35; transform: scale(0.96); }
+      50% { opacity: 0.7; transform: scale(1.04); }
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wave-left,
+      .wave-right,
+      .halo,
+      .cursor {
+        animation: none;
+      }
+
+      .cursor {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020807">
+        <animate attributeName="stop-color"
+                 values="#020807;#052e24;#020807"
+                 dur="7s"
+                 repeatCount="indefinite" />
+      </stop>
+      <stop offset="0.52" stop-color="#063c2c">
+        <animate attributeName="stop-color"
+                 values="#063c2c;#087f5b;#063c2c"
+                 dur="6s"
+                 repeatCount="indefinite" />
+      </stop>
+      <stop offset="1" stop-color="#020807" />
+    </linearGradient>
+
+    <linearGradient id="electricGreen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00c853" />
+      <stop offset="0.5" stop-color="#00ff9d" />
+      <stop offset="1" stop-color="#22c55e" />
+    </linearGradient>
+
+    <linearGradient id="deepGreen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#064e3b" />
+      <stop offset="0.5" stop-color="#059669" />
+      <stop offset="1" stop-color="#065f46" />
+    </linearGradient>
+
+    <radialGradient id="haloGradient">
+      <stop offset="0" stop-color="#00e676" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#00e676" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-20%" y="-60%" width="140%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <clipPath id="typingClip">
+      <rect x="105" y="91" width="0" height="82">
+        <animate attributeName="width"
+                 from="0"
+                 to="990"
+                 dur="3.2s"
+                 begin="0.4s"
+                 fill="freeze" />
+      </rect>
+    </clipPath>
+
+    <path id="topWave"
+          d="M0 82 C100 28 200 136 300 82 S500 28 600 82 S800 136 900 82 S1100 28 1200 82 L1200 0 L0 0 Z" />
+
+    <path id="bottomWave"
+          d="M0 191 C100 137 200 245 300 191 S500 137 600 191 S800 245 900 191 S1100 137 1200 191 L1200 260 L0 260 Z" />
+  </defs>
+
+  <rect width="1200" height="260" rx="24" fill="url(#background)" />
+
+  <ellipse class="halo"
+           cx="600"
+           cy="130"
+           rx="430"
+           ry="112"
+           fill="url(#haloGradient)" />
+
+  <g opacity="0.74">
+    <g class="wave-left" fill="url(#deepGreen)">
+      <use href="#topWave" x="0" />
+      <use href="#topWave" x="1200" />
+    </g>
+  </g>
+
+  <g opacity="0.48">
+    <g class="wave-right" fill="url(#electricGreen)">
+      <use href="#topWave" x="0" y="21" />
+      <use href="#topWave" x="1200" y="21" />
+    </g>
+  </g>
+
+  <g opacity="0.5">
+    <g class="wave-right" fill="url(#deepGreen)">
+      <use href="#bottomWave" x="0" />
+      <use href="#bottomWave" x="1200" />
+    </g>
+  </g>
+
+  <g opacity="0.32">
+    <g class="wave-left" fill="url(#electricGreen)">
+      <use href="#bottomWave" x="0" y="-22" />
+      <use href="#bottomWave" x="1200" y="-22" />
+    </g>
+  </g>
+
+  <g fill="#00e676" filter="url(#softGlow)">
+    <circle cx="110" cy="235" r="9">
+      <animate attributeName="cy" values="235;-20;235" dur="7.4s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.85;0" dur="7.4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="260" cy="235" r="15">
+      <animate attributeName="cy" values="235;-25;235" dur="9.1s" begin="-3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.7;0" dur="9.1s" begin="-3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="430" cy="235" r="7">
+      <animate attributeName="cy" values="235;-15;235" dur="6.8s" begin="-1.5s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.9;0" dur="6.8s" begin="-1.5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="770" cy="235" r="11">
+      <animate attributeName="cy" values="235;-20;235" dur="8.4s" begin="-4.2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.8;0" dur="8.4s" begin="-4.2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="930" cy="235" r="6">
+      <animate attributeName="cy" values="235;-15;235" dur="6.5s" begin="-2.1s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.9;0" dur="6.5s" begin="-2.1s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="1090" cy="235" r="13">
+      <animate attributeName="cy" values="235;-25;235" dur="9.6s" begin="-5.3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;0.72;0" dur="9.6s" begin="-5.3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <rect x="76"
+        y="83"
+        width="1048"
+        height="94"
+        rx="20"
+        fill="#020617"
+        fill-opacity="0.64"
+        stroke="#00e676"
+        stroke-opacity="0.38" />
+
+  <text x="600"
+        y="146"
+        text-anchor="middle"
+        clip-path="url(#typingClip)"
+        fill="#ffffff"
+        font-family="Courier New, Courier, monospace"
+        font-size="42"
+        font-weight="700"
+        letter-spacing="0.2"
+        filter="url(#textGlow)">Hi, I'm Elves! Welcome to my GitHub</text>
+
+  <rect class="cursor"
+        x="1061"
+        y="153"
+        width="27"
+        height="4"
+        rx="2"
+        fill="#ffffff" />
+
+  <rect x="1"
+        y="1"
+        width="1198"
+        height="258"
+        rx="23"
+        fill="none"
+        stroke="#00e676"
+        stroke-opacity="0.28"
+        stroke-width="2" />
+</svg>
